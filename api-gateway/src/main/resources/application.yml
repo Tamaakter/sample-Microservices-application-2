@@ -1,0 +1,26 @@
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: guest-management
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/guest/**
+        - id: inventory-management
+          uri: http://localhost:8085/
+          predicates:
+            - Path=/inventory/**
+        - id: staff-management
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/staff/**
+        - id: reservation-management
+          uri: http://localhost:8084/
+          predicates:
+            - Path=/reservation/**
+
+  application:
+    name: api-gateway
